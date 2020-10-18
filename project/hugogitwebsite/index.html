@@ -330,7 +330,36 @@ git submodule add -b master https://github.com/&lt;USERNAME&gt;/&lt;USERNAME&gt;
 <p>不知道原因 只能两个key</p>
 <h2 id="wsl访问的文件-不能win删除">wsl访问的文件 不能win删除</h2>
 <p><a href="https://docs.microsoft.com/zh-cn/windows/wsl/file-permissions">https://docs.microsoft.com/zh-cn/windows/wsl/file-permissions</a></p>
+<h3 id="deploysh">deploy.sh</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="">#!/bin/sh
+</span><span style=""></span>
+<span style="font-style:italic"># If a command fails then the deploy stops</span>
+set -e
 
+printf <span style="font-style:italic">&#34;\033[0;32mDeploying updates to GitHub...\033[0m\n&#34;</span>
+
+<span style="font-style:italic"># Build the project.</span> 
+hugo -t hugo-coder --buildDrafts
+<span style="font-style:italic"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
+<span style="font-style:italic"># --buildDrafts 原本draft:true 不会显示 --buildDrafts则显示</span>
+
+<span style="font-style:italic"># Go To Public folder</span>
+cd public
+
+<span style="font-style:italic"># Add changes to git.</span>
+git add .
+
+<span style="font-style:italic"># Commit changes.</span>
+msg=<span style="font-style:italic">&#34;rebuilding site </span><span style="font-weight:bold">$(</span>date<span style="font-weight:bold">)</span><span style="font-style:italic">&#34;</span>
+<span style="font-weight:bold">if</span> [ -n <span style="font-style:italic">&#34;</span>$*<span style="font-style:italic">&#34;</span> ]; <span style="font-weight:bold">then</span>
+	msg=<span style="font-style:italic">&#34;</span>$*<span style="font-style:italic">&#34;</span>
+<span style="font-weight:bold">fi</span>
+git commit -m <span style="font-style:italic">&#34;</span>$msg<span style="font-style:italic">&#34;</span>
+
+<span style="font-style:italic"># Push source and build repos.</span>
+git branch -M main
+git push origin main
+</code></pre></div>
   </article>
 </section>
 
