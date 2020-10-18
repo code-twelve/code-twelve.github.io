@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://code-twelve.github.io/en/about/</loc>
+    <lastmod>2020-10-17T16:54:07+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://code-twelve.github.io/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://code-twelve.github.io/en/about/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://code-twelve.github.io/en/contact/</loc>
+    <lastmod>2020-10-17T16:28:45+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://code-twelve.github.io/contact/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://code-twelve.github.io/en/contact/"
+                />
+  </url>
+  
+  <url>
     <loc>https://code-twelve.github.io/en/categories/</loc>
     <xhtml:link
                 rel="alternate"

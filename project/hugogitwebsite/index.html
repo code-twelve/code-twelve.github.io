@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="zh-cn">
+
+    <meta name="author" content="代码十二行">
+    <meta name="description" content="整体流程 （从 0 开始） 操作环境  Win10 和 Google 浏览器 git PowerShell / cmd / linux (wsl) /git bash 四选一  控制 Hugo 和 git 命令行
+  Hugo v0.74.3 extended  (coder 模板要求 extended 版本 否则部署时会出问题)
+   安装wsl ubuntu 安装完要更换目录 装到d盘
+ WSL 的第三方工具 LxRunOffline https://sspai.com/post/61634#!
+ wsl 装 Homebrew 和 Hugo Homebrew安装报错 https://docs.brew.sh/Homebrew-on-Linux
+git clone 太慢 https://www.cnblogs.com/zhaoqingqing/p/13109706.html
+2020.10.18 github.com 140.82.113.4 github.global.ssl.fastly.net 199.232.69.194  上个方法不太管用 https://blog.csdn.net/weixin_44821644/article/details/107574297
+homebrew 源太慢 换中科大镜像 https://www.">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo &#43; Git 搭建静态网页"/>
+<meta name="twitter:description" content="整体流程 （从 0 开始） 操作环境  Win10 和 Google 浏览器 git PowerShell / cmd / linux (wsl) /git bash 四选一  控制 Hugo 和 git 命令行
+  Hugo v0.74.3 extended  (coder 模板要求 extended 版本 否则部署时会出问题)
+   安装wsl ubuntu 安装完要更换目录 装到d盘
+ WSL 的第三方工具 LxRunOffline https://sspai.com/post/61634#!
+ wsl 装 Homebrew 和 Hugo Homebrew安装报错 https://docs.brew.sh/Homebrew-on-Linux
+git clone 太慢 https://www.cnblogs.com/zhaoqingqing/p/13109706.html
+2020.10.18 github.com 140.82.113.4 github.global.ssl.fastly.net 199.232.69.194  上个方法不太管用 https://blog.csdn.net/weixin_44821644/article/details/107574297
+homebrew 源太慢 换中科大镜像 https://www."/>
+
+    <meta property="og:title" content="Hugo &#43; Git 搭建静态网页" />
+<meta property="og:description" content="整体流程 （从 0 开始） 操作环境  Win10 和 Google 浏览器 git PowerShell / cmd / linux (wsl) /git bash 四选一  控制 Hugo 和 git 命令行
+  Hugo v0.74.3 extended  (coder 模板要求 extended 版本 否则部署时会出问题)
+   安装wsl ubuntu 安装完要更换目录 装到d盘
+ WSL 的第三方工具 LxRunOffline https://sspai.com/post/61634#!
+ wsl 装 Homebrew 和 Hugo Homebrew安装报错 https://docs.brew.sh/Homebrew-on-Linux
+git clone 太慢 https://www.cnblogs.com/zhaoqingqing/p/13109706.html
+2020.10.18 github.com 140.82.113.4 github.global.ssl.fastly.net 199.232.69.194  上个方法不太管用 https://blog.csdn.net/weixin_44821644/article/details/107574297
+homebrew 源太慢 换中科大镜像 https://www." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://code-twelve.github.io/project/hugogitwebsite/" />
+<meta property="article:published_time" content="2020-10-17T16:52:45+08:00" />
+<meta property="article:modified_time" content="2020-10-17T16:52:45+08:00" />
+
+
+    <title>
+  Hugo &#43; Git 搭建静态网页 · Code Twelve
+</title>
+
+    
+      <link rel="canonical" href="https://code-twelve.github.io/project/hugogitwebsite/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://code-twelve.github.io/css/coder.min.9836c03fe5c87d102278a33e86d0591ef36c89b1e17e8e547ebf84c05cee010e.css" integrity="sha256-mDbAP&#43;XIfRAieKM&#43;htBZHvNsibHhfo5Ufr&#43;EwFzuAQ4=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://code-twelve.github.io/css/coder-dark.min.717236c74e0a5208ef73964a9f44c6b443b689a95b270d8b2a40d0c012460dac.css" integrity="sha256-cXI2x04KUgjvc5ZKn0TGtEO2ialbJw2LKkDQwBJGDaw=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://code-twelve.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://code-twelve.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <link rel="apple-touch-icon" href="https://code-twelve.github.io/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://code-twelve.github.io/images/apple-touch-icon.png">
+
+    
+      <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+    
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-auto"
+        onload=" twemoji.parse(document.body); "
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://code-twelve.github.io/">
+      Code Twelve
+    </a>
+    
+      
+        <span id="dark-mode-toggle" class="float-right">
+          <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        </span>
+      
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://code-twelve.github.io/about/">简介</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://code-twelve.github.io/post/">文档</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://code-twelve.github.io/project/">项目</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://code-twelve.github.io/contact/">联系我</a>
+            </li>
+          
+        
+        
+          
+          
+          
+            
+          
+            
+              
+                <li class="navigation-item menu-separator">
+                  <span>|</span>
+                </li>
+                
+              
+              <li class="navigation-item">
+                <a href="https://code-twelve.github.io/en/">English</a>
+              </li>
+            
+          
+        
+        
+          <li class="navigation-item separator">
+            <span>|</span>
+          </li>
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>Hugo &#43; Git 搭建静态网页</h1>
+    </header>
+
+    <h1 id="整体流程-从-0-开始">整体流程 （从 0 开始）</h1>
+<h2 id="操作环境">操作环境</h2>
+<ul>
+<li>Win10 和 Google 浏览器</li>
+<li>git</li>
+<li>PowerShell / cmd / linux (wsl) /git bash 四选一
+<blockquote>
+<p>控制 Hugo 和 git 命令行</p>
+</blockquote>
+</li>
+<li>Hugo v0.74.3 extended
+<blockquote>
+<p>(coder 模板要求 extended 版本 否则部署时会出问题)</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="安装wsl-ubuntu">安装wsl ubuntu</h1>
+<p>安装完要更换目录 装到d盘</p>
+<blockquote>
+<p>WSL 的第三方工具 LxRunOffline
+<a href="https://sspai.com/post/61634#!">https://sspai.com/post/61634#!</a></p>
+</blockquote>
+<h1 id="wsl-装-homebrew-和-hugo">wsl 装 Homebrew 和 Hugo</h1>
+<h2 id="homebrew安装报错">Homebrew安装报错</h2>
+<p><a href="https://docs.brew.sh/Homebrew-on-Linux">https://docs.brew.sh/Homebrew-on-Linux</a></p>
+<h2 id="git-clone-太慢">git clone 太慢</h2>
+<p><a href="https://www.cnblogs.com/zhaoqingqing/p/13109706.html">https://www.cnblogs.com/zhaoqingqing/p/13109706.html</a></p>
+<pre><code>2020.10.18
+github.com 140.82.113.4
+github.global.ssl.fastly.net  199.232.69.194
+</code></pre>
+<p>上个方法不太管用
+<a href="https://blog.csdn.net/weixin_44821644/article/details/107574297">https://blog.csdn.net/weixin_44821644/article/details/107574297</a></p>
+<h2 id="homebrew-源太慢-换中科大镜像">homebrew 源太慢 换中科大镜像</h2>
+<p><a href="https://www.cnblogs.com/imzhi/p/homebrew-mirror-choose.html">https://www.cnblogs.com/imzhi/p/homebrew-mirror-choose.html</a></p>
+<h2 id="apt-安装太慢了-wsl镜像">apt 安装太慢了 wsl镜像</h2>
+<p><a href="https://cloud.tencent.com/developer/article/1538304">https://cloud.tencent.com/developer/article/1538304</a></p>
+<ul>
+<li>
+<p>备份list文件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cd /etc/apt/
+sudo cp sources.list sources.list.bak
+</code></pre></div></li>
+<li>
+<p>进vim改源</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sudo vim sources.list
+</code></pre></div><pre><code>  &gt;&gt;vim
+  命令模式 gg 到首行 dG 清除所有内容
+  输入阿里云镜像 Esc 退出输入进入命令
+  :wq 保存退出
+</code></pre>
+<blockquote>
+<p>vim编辑<br>
+<a href="https://www.runoob.com/linux/linux-vim.html">https://www.runoob.com/linux/linux-vim.html</a></p>
+</blockquote>
+<p>命令模式：</p>
+<pre><code>  i 切换到输入模式，以输入字符。
+  x 删除当前光标所在处的字符。
+  : 切换到底线命令模式，以在最底一行输入命令。
+</code></pre>
+<p>输入模式</p>
+<pre><code>  字符按键以及Shift组合，输入字符
+  ENTER，回车键，换行
+  BACK SPACE，退格键，删除光标前一个字符
+  DEL，删除键，删除光标后一个字符
+  方向键，在文本中移动光标
+  HOME/END，移动光标到行首/行尾
+  Page Up/Page Down，上/下翻页
+  Insert，切换光标为输入/替换模式，光标将变成竖线/下划线
+  ESC，退出输入模式，切换到命令模式
+</code></pre>
+<p>底线命令模式</p>
+<pre><code>  在命令模式下按下:（英文冒号）就进入了底线命令模式。
+  底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。
+  在底线命令模式中，基本的命令有（已经省略了冒号）：
+
+  q 退出程序
+  w 保存文件
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>阿里云镜像
+<a href="https://developer.aliyun.com/mirror/">https://developer.aliyun.com/mirror/</a></p>
+</blockquote>
+<pre><code>deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+</code></pre>
+<blockquote>
+<p>解决 E: Unable to correct problems, you have held broken packages. 问题
+<a href="https://www.cnblogs.com/qq952693358/p/6881308.html">https://www.cnblogs.com/qq952693358/p/6881308.html</a></p>
+</blockquote>
+<blockquote>
+<p>报错 build-essential：Ubuntu 版本从20.04 变 18.04 解决</p>
+</blockquote>
+<blockquote>
+<p>Ubuntu 20.04 问题在于，当前系统以安装的 libc6的版本为“2.19-10ubuntu2 ” ，而我们安装其他软件（包括build-essential 、g++等）的时候，所依赖的是“2.19-0ubuntu6.9” 。
+也就是问题在于， 依赖的某个软件的版本，跟系统以安装的版本不一致。但 apt-get又不会自动去卸载以安装的自动安装上依赖的目标版本。 所以导致我们需要手动去解决这个问题。  当前解决这个问题办法有很多种，我们这里选择了，直接强制覆盖安装目标版本，替代原来系统已安装的版本。 <a href="https://blog.csdn.net/duanlove/article/details/54666441">https://blog.csdn.net/duanlove/article/details/54666441</a></p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">The following information may help to resolve the situation: The following packages have unmet dependencies:
+build-essential : Depends: libc6-dev but it is not going to be installed or
+                        libc-dev
+                Depends: g++ (&gt;= 4:7.2) but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">chris@DESKTOP-FKTANTF:/etc/apt$ apt list g++
+Listing... Done
+g++/bionic-security,bionic-updates 4:7.4.0-1ubuntu2.3 amd64
+N: There is 1 additional version. Please use the &#39;-a&#39; switch to see it  
+强行换 会造成Ubuntu 20.04 当前版本不可用 Ubuntu要降级
+</code></pre></div><h1 id="在-myblog-里更改-hugo-设置和博客内容">在 myblog 里更改 Hugo 设置和博客内容</h1>
+<p>个人设置会覆盖模板设置
+改config.toml</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">hugo server -t hugo-coder --buildDrafts
+</code></pre></div><h1 id="部署在-githubio-github-page">部署在 github.io (github page)</h1>
+<p>在pc本地的 myblog 文件（Hugo和content全有的文件里）</p>
+<pre><code>myblog&gt;&gt; hugo --theme=hugo-coder --baseURL=&quot;&lt;USERNAME&gt;.github.io&quot; --buildDrafts
+</code></pre>
+<p>会产生public文件 把public整到 &ldquo;用户名/github.io&rdquo; （codeTwelve.github.io）的 repository 该仓库要是空的</p>
+<p>添加一个新的远程库 抓取 加新分支 origin是主分支</p>
+<pre><code>public&gt;&gt; git remote add origin https://github.com/code-twelve/code-twelve.github.io.git
+</code></pre>
+<p>现添加了远程库才能 add.</p>
+<pre><code>public&gt;&gt; git branch -M main
+或者 git branch -m master main
+public&gt;&gt; git add .
+public&gt;&gt; git commit -m &quot;要留的言&quot;
+public&gt;&gt; git push origin main
+</code></pre>
+<blockquote>
+<p>注：因为社会问题 All new Git repositories on GitHub will be named &ldquo;main&rdquo; instead of &ldquo;master&rdquo; starting October 1, 2020. 但目前还没有出解决方案</p>
+</blockquote>
+<p>仓库里的setting gihub pages 部分 source 也要改成main</p>
+<h2 id="部署后-theme-not-rendering-打开f12查看-加载不出resource">部署后 theme not rendering 打开F12查看 加载不出resource</h2>
+<p>解：baseUrl</p>
+<pre><code>git submodule add &lt;子模块git地址&gt; &lt;存放的文件名&gt;    
+git submodule add -b master https://github.com/&lt;USERNAME&gt;/&lt;USERNAME&gt;.github.io.git public
+</code></pre>
+<blockquote>
+<p>这将创建一个git子模块。现在，当您运行hugo命令将站点构建到时public，创建的public目录将具有不同的远程源（即托管的GitHub存储库）。
+<a href="https://www.cnblogs.com/sjx13/p/13816223.html">https://www.cnblogs.com/sjx13/p/13816223.html</a></p>
+</blockquote>
+<h2 id="ssh-链接git">ssh 链接git</h2>
+<p><a href="https://www.jianshu.com/p/3f4b2ede5a93">https://www.jianshu.com/p/3f4b2ede5a93</a>
+<a href="https://www.cnblogs.com/sjx13/p/13816223.html">https://www.cnblogs.com/sjx13/p/13816223.html</a></p>
+<h1 id="wsl优化之ssh远程登录篇">WSL优化之SSH远程登录篇</h1>
+<p><a href="https://www.cnblogs.com/yingbin/p/12828902.html">https://www.cnblogs.com/yingbin/p/12828902.html</a>
+<a href="https://jingyan.baidu.com/article/ea24bc3942e6f49b63b33158.html">https://jingyan.baidu.com/article/ea24bc3942e6f49b63b33158.html</a></p>
+<p>linux .ssh生成后默认给用户权限只有执行</p>
+<p>虚拟机key不共用 且 原有shh不能读写 不能多次生成 就只能手动用win管理员删掉 再创建 我把win的key拷过来没用 还没法重写新的key进去</p>
+<h2 id="powershell-wsl-的ssh-key-不通用">powershell wsl 的ssh key 不通用</h2>
+<p>不知道原因 只能两个key</p>
+<h2 id="wsl访问的文件-不能win删除">wsl访问的文件 不能win删除</h2>
+<p><a href="https://docs.microsoft.com/zh-cn/windows/wsl/file-permissions">https://docs.microsoft.com/zh-cn/windows/wsl/file-permissions</a></p>
+
+  </article>
+</section>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>还在路上呀 Fight on!</p>
+      
+      
+        ©
+        
+        2020
+         代码十二行 
+      
+      
+         · 
+        技术支持 <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+        
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+      
+      <script src="https://code-twelve.github.io/js/dark-mode.min.0213e1773e6d1c5a644f847c67a6f8abac49a3776e2976f6008038af8c5b76a1.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+  </body>
+
+</html>

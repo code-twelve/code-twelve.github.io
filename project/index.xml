@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Code Twelve</title>
+    <link>https://code-twelve.github.io/project/</link>
+    <description>Recent content in Projects on Code Twelve</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 17 Oct 2020 16:52:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://code-twelve.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo &#43; Git 搭建静态网页</title>
+      <link>https://code-twelve.github.io/project/hugogitwebsite/</link>
+      <pubDate>Sat, 17 Oct 2020 16:52:45 +0800</pubDate>
+      
+      <guid>https://code-twelve.github.io/project/hugogitwebsite/</guid>
+      <description>整体流程 （从 0 开始） 操作环境  Win10 和 Google 浏览器 git PowerShell / cmd / linux (wsl) /git bash 四选一  控制 Hugo 和 git 命令行
+  Hugo v0.74.3 extended  (coder 模板要求 extended 版本 否则部署时会出问题)
+   安装wsl ubuntu 安装完要更换目录 装到d盘
+ WSL 的第三方工具 LxRunOffline https://sspai.com/post/61634#!
+ wsl 装 Homebrew 和 Hugo Homebrew安装报错 https://docs.brew.sh/Homebrew-on-Linux
+git clone 太慢 https://www.cnblogs.com/zhaoqingqing/p/13109706.html
+2020.10.18 github.com 140.82.113.4 github.global.ssl.fastly.net 199.232.69.194  上个方法不太管用 https://blog.csdn.net/weixin_44821644/article/details/107574297
+homebrew 源太慢 换中科大镜像 https://www.</description>
+    </item>
+    
+  </channel>
+</rss>
