@@ -6,57 +6,9 @@
     <description>Recent content on Code Twelve</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 17 Oct 2020 16:52:45 +0800</lastBuildDate>
     
 	<atom:link href="https://code-twelve.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>简介</title>
-      <link>https://code-twelve.github.io/about/</link>
-      <pubDate>Sat, 17 Oct 2020 16:54:00 +0800</pubDate>
-      
-      <guid>https://code-twelve.github.io/about/</guid>
-      <description>你好呀！我是代码十二行。
-这是我的第一个博客网页，它是基于 Hugo 搭建的（Hugo 是很强大且简便的搭建网页的工具，建议你也来试一试）
-今后这里将会成为分享技术成长的地方，请多指教呀！
-10/17/2020</description>
-    </item>
-    
-    <item>
-      <title>Hugo &#43; Git 搭建静态网页</title>
-      <link>https://code-twelve.github.io/project/hugogitwebsite/</link>
-      <pubDate>Sat, 17 Oct 2020 16:52:45 +0800</pubDate>
-      
-      <guid>https://code-twelve.github.io/project/hugogitwebsite/</guid>
-      <description>整体流程 （从 0 开始） 操作环境  Win10 和 Google 浏览器 git PowerShell / cmd / linux (wsl) /git bash 四选一  控制 Hugo 和 git 命令行
-  Hugo v0.74.3 extended  (coder 模板要求 extended 版本 否则部署时会出问题)
-   安装wsl ubuntu 安装完要更换目录 装到d盘
- WSL 的第三方工具 LxRunOffline https://sspai.com/post/61634#!
- wsl 装 Homebrew 和 Hugo Homebrew安装报错 https://docs.brew.sh/Homebrew-on-Linux
-git clone 太慢 https://www.cnblogs.com/zhaoqingqing/p/13109706.html
-2020.10.18 github.com 140.82.113.4 github.global.ssl.fastly.net 199.232.69.194  上个方法不太管用 https://blog.csdn.net/weixin_44821644/article/details/107574297
-homebrew 源太慢 换中科大镜像 https://www.</description>
-    </item>
-    
-    <item>
-      <title>联系我</title>
-      <link>https://code-twelve.github.io/contact/</link>
-      <pubDate>Sat, 17 Oct 2020 16:41:04 +0800</pubDate>
-      
-      <guid>https://code-twelve.github.io/contact/</guid>
-      <description>邮箱: code.twelve@outlook.com
-Follow me, @CodeTwelve.</description>
-    </item>
-    
-    <item>
-      <title>用 Hugo 搭建个人网页的初尝试</title>
-      <link>https://code-twelve.github.io/post/my-first-post/</link>
-      <pubDate>Sat, 17 Oct 2020 15:28:14 +0800</pubDate>
-      
-      <guid>https://code-twelve.github.io/post/my-first-post/</guid>
-      <description>技术要求  Hugo git linux/shell(cmd) Markdown.  </description>
-    </item>
     
   </channel>
 </rss>

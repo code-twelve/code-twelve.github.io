@@ -10,27 +10,5 @@
 	<atom:link href="https://code-twelve.github.io/en/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>About</title>
-      <link>https://code-twelve.github.io/en/about/</link>
-      <pubDate>Sat, 17 Oct 2020 16:54:07 +0800</pubDate>
-      
-      <guid>https://code-twelve.github.io/en/about/</guid>
-      <description>Welcome, this&amp;rsquo;s Code Twelve.
-The websit my first personal website, which is built by Hugo. (Hugo is a very powerful tool to build a website. You should try it and I promise Hugo will impress you.)
-I&amp;rsquo;ll share my growth in Coding &amp;amp; Video Editing fileds. Follow me.
-10/17/2020</description>
-    </item>
-    
-    <item>
-      <title>Contact Me</title>
-      <link>https://code-twelve.github.io/en/contact/</link>
-      <pubDate>Sat, 17 Oct 2020 16:28:45 +0800</pubDate>
-      
-      <guid>https://code-twelve.github.io/en/contact/</guid>
-      <description>E-mail address: code.twelve@outlook.com
-Follow me, @CodeTwelve.</description>
-    </item>
-    
   </channel>
 </rss>
